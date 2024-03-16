@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import { TitulosU, CategoriasEscalafon, ExperienciaCalificada, total_titulos_estudios, total_experiencia_calificada } from "./Fomula";
+import InputControl from "../Global/InputControl";
 
 const NominaForm = () => {
     const general = 16441.00;
@@ -89,18 +90,20 @@ const NominaForm = () => {
     };
     
     return (
-        <div className="">
+        <div className="lex justify-center items-center h-screen">
             <div className="max-w-md mx-auto mt-8 p-4 bg-gray-100 rounded-lg shadow-lg">
                 <h1 className="text-xl font-bold mb-4">Esta es la nómina</h1>
-                <form>
-                    <div className="mb-4">
-                        <label htmlFor="titulo" className="block text-sm font-medium text-gray-700">Tipo de Título Universitario:</label>
-                        <select id="titulo" value={tituloSeleccionado} onChange={handleChangeTitulo} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <option value="">Selecciona un tipo de título</option>
-                            <option value="medicos">Médicos</option>
-                            <option value="otros">Otros</option>
-                        </select>
-                    </div>
+                <form className="space-y-4">
+                <div className="custom-input">
+                     <label htmlFor="titulo" className="block text-sm font-medium text-gray-700">Tipo de Título Universitario:</label>
+                            <select id="titulo" value={tituloSeleccionado} onChange={handleChangeTitulo} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <option value="">Selecciona un tipo de título</option>
+                                 <option value="medicos">Médicos</option>
+                                 <option value="otros">Otros</option>
+                           </select>
+                </div>
+                
+
                     <div className="mb-4">
                         <label htmlFor="especializaciones" className="block text-sm font-medium text-gray-700">Especializaciones:</label>
                         <input id="especializaciones" type="number" value={especializaciones} onChange={handleChangeEspecializaciones} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />

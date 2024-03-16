@@ -1,5 +1,6 @@
 import CardsForm from "../components/Global/CardsForm"
 import NominaForm from "../components/Nomina/FormNomina"
+import "../App.css"
 
 const Nomina = () => {
     return (
