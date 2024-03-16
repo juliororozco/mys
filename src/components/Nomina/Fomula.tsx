@@ -67,10 +67,67 @@ export function total_categorias(categoria: CategoriasEscalafon, general: number
 }
 
 
+//calcular experiencia 
+// Enums para representar los diferentes tipos de experiencia calificada
+export enum TipoExperiencia {
+    Investigacion = 6,
+    Docente = 4,
+    ProfesionalAcademica = 4,
+    ProfesionalNoDocente = 3,
+}
+
+// Función para calcular el puntaje por experiencia calificada
+export function puntaje_experiencia(investigacion: number, docente: number, profesionalAcademica: number, profesionalNoDocente: number): number {
+    let totalPuntaje = 0;
+
+    totalPuntaje += investigacion * TipoExperiencia.Investigacion;
+    totalPuntaje += docente * TipoExperiencia.Docente;
+    totalPuntaje += profesionalAcademica * TipoExperiencia.ProfesionalAcademica;
+    totalPuntaje += profesionalNoDocente * TipoExperiencia.ProfesionalNoDocente;
+
+    return totalPuntaje;
+}
+
+// Función para calcular el puntaje máximo según la categoría del docente
+export enum ExperienciaCalificada {
+    Investigacion = 6,
+    DocenciaUniversitaria = 4,
+    ExperienciaProfesionalDireccionAcademica = 4,
+    ExperienciaProfesionalDiferenteDocencia = 3,
+}
+
+export function total_experiencia_calificada(
+    aniosInvestigacion: number,
+    aniosDocenciaUniversitaria: number,
+    aniosExperienciaProfesionalDireccionAcademica: number,
+    aniosExperienciaProfesionalDiferenteDocencia: number,
+    general: number
+): number {
+    const puntosInvestigacion = aniosInvestigacion * ExperienciaCalificada.Investigacion * general;
+    const puntosDocenciaUniversitaria = aniosDocenciaUniversitaria * ExperienciaCalificada.DocenciaUniversitaria * general;
+    const puntosExperienciaProfesionalDireccionAcademica = aniosExperienciaProfesionalDireccionAcademica * ExperienciaCalificada.ExperienciaProfesionalDireccionAcademica * general;
+    const puntosExperienciaProfesionalDiferenteDocencia = aniosExperienciaProfesionalDiferenteDocencia * ExperienciaCalificada.ExperienciaProfesionalDiferenteDocencia * general;
+
+    return puntosInvestigacion + puntosDocenciaUniversitaria + puntosExperienciaProfesionalDireccionAcademica + puntosExperienciaProfesionalDiferenteDocencia;
+}
+
 // Función para calcular el total de sueldos
-export function total_titulos_estudios(general: number, Titulos: TitulosU, especializaciones: number, magister: number, doctorado: number, categoria: CategoriasEscalafon): number {
+// Función para calcular el total de sueldos
+export function total_titulos_estudios(
+    general: number, 
+    Titulos: TitulosU, 
+    especializaciones: number, 
+    magister: number, 
+    doctorado: number, 
+    categoria: CategoriasEscalafon,
+    aniosInvestigacion: number, 
+    aniosDocenciaUniversitaria: number, 
+    aniosExperienciaProfesionalDireccionAcademica: number, 
+    aniosExperienciaProfesionalDiferenteDocencia: number
+): number {
     const totalPregrado = total_pregrado(general, Titulos);
     const totalPosgrado = total_posgrado(especializaciones, magister, doctorado, general);
     const totalCategorias = total_categorias(categoria, general);
-    return totalPregrado + totalPosgrado + totalCategorias;
+    const totalExperiencia = total_experiencia_calificada(aniosInvestigacion, aniosDocenciaUniversitaria, aniosExperienciaProfesionalDireccionAcademica, aniosExperienciaProfesionalDiferenteDocencia, general);
+    return totalPregrado + totalPosgrado + totalCategorias + totalExperiencia;
 }
