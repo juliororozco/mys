@@ -6,7 +6,7 @@ const Nomina = () => {
     return (
       <>
         <div className="flex justify-center items-center text-7xl text-black font-medium pt-10 border-[#967460] ">
-          sueldo de docentes 
+          <strong> CALULO DE NOMINA DE DOCENTES </strong> 
         </div>
         <CardsForm Component={NominaForm} />
       </>

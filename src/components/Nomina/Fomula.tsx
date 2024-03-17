@@ -111,7 +111,123 @@ export function total_experiencia_calificada(
     return puntosInvestigacion + puntosDocenciaUniversitaria + puntosExperienciaProfesionalDireccionAcademica + puntosExperienciaProfesionalDiferenteDocencia;
 }
 
-// Función para calcular el total de sueldos
+// Enums para representar los tipos de revistas
+export enum TipoRevista {
+    A1 = 15,
+    A2 = 12,
+    B = 8,
+    C = 3,
+}
+
+// Función para calcular los puntos de productividad por artículo en revistas especializadas
+export function puntos_productividad_revistas(tipoRevista: TipoRevista, cantidad: number, general: number): number {
+    return tipoRevista * cantidad * general;
+}
+
+// Enums para representar las modalidades de producción de videos, cinematográficas o fonográficas
+export enum ModalidadProduccion {
+    Internacional = 12,
+    Nacional = 7,
+}
+
+// Función para calcular los puntos de productividad por producción de videos, cinematográficas o fonográficas
+export function puntos_productividad_videos(modalidad: ModalidadProduccion, cantidad: number, general: number): number {
+    return modalidad * cantidad * general;
+}
+
+// Tipo de producción 
+export enum TipoProduccion {
+    LibrosInvestigacion = 20,
+    LibrosTexto = 15,
+    LibrosEnsayo = 15,
+    Premios = 15,
+    Patentes = 25,
+    TraduccionesLibros = 15,
+}
+
+// Función para calcular los puntos de productividad por tipo de producción
+export function puntos_productividad_produccion(tipoProduccion: TipoProduccion, cantidad: number, general: number): number {
+    return tipoProduccion * cantidad * general;
+}
+
+// Calcular tipos de obra artística
+export enum TipoObraArtistica {
+    OriginalInternacional = 20,
+    OriginalNacional = 14,
+    ComplementariaInternacional = 12,
+    ComplementariaNacional = 8,
+}
+
+// Función para calcular los puntos de productividad por tipo de obra artística
+export function puntos_productividad_obras(tipoObra: TipoObraArtistica, cantidad: number, general: number): number {
+    return tipoObra * cantidad * general;
+}
+
+// Calcular puntos de interpretación
+export enum TipoInterpretacion {
+    Internacional = 14,
+    Nacional = 8,
+}
+
+// Función para calcular los puntos de productividad por tipo de interpretación
+export function puntos_productividad_interpretacion(tipoInterpretacion: TipoInterpretacion, cantidad: number, general: number): number {
+    return tipoInterpretacion * cantidad * general;
+}
+
+// Restricción de puntajes para la misma obra o actividad productiva considerada
+export function ajuste_puntajes_anuales(puntajeActual: number, nuevoPuntaje: number): number {
+    return Math.max(puntajeActual, nuevoPuntaje);
+}
+
+// Restricción de puntajes según el número de autores
+export function asignacion_puntajes_autores(puntaje: number, numeroAutores: number): number {
+    if (numeroAutores <= 3) {
+        return puntaje;
+    } else if (numeroAutores >= 4 && numeroAutores <= 5) {
+        return puntaje / 2;
+    } else {
+        return puntaje / (numeroAutores / 2);
+    }
+}
+
+function totalProductividad(
+    tipoRevista: TipoRevista, cantidadRevistas: number, 
+    modalidadProduccion: ModalidadProduccion, cantidadProducciones: number, 
+    tipoProduccion: TipoProduccion, cantidadProduccionesTipo: number, 
+    tipoObra: TipoObraArtistica, cantidadObras: number, 
+    tipoInterpretacion: TipoInterpretacion, cantidadInterpretaciones: number, 
+    general: number, numeroAutores: number
+): number {
+    let total = 0;
+
+    // Calcular puntos de productividad por artículo en revistas especializadas
+    total += puntos_productividad_revistas(tipoRevista, cantidadRevistas, general);
+
+    // Calcular puntos de productividad por producción de videos, cinematográficas o fonográficas
+    total += puntos_productividad_videos(modalidadProduccion, cantidadProducciones, general);
+
+    // Calcular puntos de productividad por tipo de producción
+    total += puntos_productividad_produccion(tipoProduccion, cantidadProduccionesTipo, general);
+
+    // Calcular puntos de productividad por tipo de obra artística
+    total += puntos_productividad_obras(tipoObra, cantidadObras, general);
+
+    // Calcular puntos de productividad por tipo de interpretación
+    total += puntos_productividad_interpretacion(tipoInterpretacion, cantidadInterpretaciones, general);
+
+    // Aplicar restricción de puntajes para el mismo trabajo o actividad productiva considerada
+    total = ajuste_puntajes_anuales(0, total);
+
+    // Aplicar restricción de puntajes según el número de autores
+    total = asignacion_puntajes_autores(total, numeroAutores);
+
+    return total;
+}
+
+
+
+
+
 // Función para calcular el total de sueldos
 export function total_titulos_estudios(
     general: number, 
@@ -123,11 +239,25 @@ export function total_titulos_estudios(
     aniosInvestigacion: number, 
     aniosDocenciaUniversitaria: number, 
     aniosExperienciaProfesionalDireccionAcademica: number, 
-    aniosExperienciaProfesionalDiferenteDocencia: number
+    aniosExperienciaProfesionalDiferenteDocencia: number,
+    tipoRevista: TipoRevista, cantidadRevistas: number,
+    modalidadProduccion: ModalidadProduccion, cantidadProducciones: number,
+    tipoProduccion: TipoProduccion, cantidadProduccionesTipo: number,
+    tipoObra: TipoObraArtistica, cantidadObras: number,
+    tipoInterpretacion: TipoInterpretacion, cantidadInterpretaciones: number,
+    numeroAutores: number
 ): number {
     const totalPregrado = total_pregrado(general, Titulos);
     const totalPosgrado = total_posgrado(especializaciones, magister, doctorado, general);
     const totalCategorias = total_categorias(categoria, general);
     const totalExperiencia = total_experiencia_calificada(aniosInvestigacion, aniosDocenciaUniversitaria, aniosExperienciaProfesionalDireccionAcademica, aniosExperienciaProfesionalDiferenteDocencia, general);
-    return totalPregrado + totalPosgrado + totalCategorias + totalExperiencia;
+    const totalP = totalProductividad(
+        tipoRevista, cantidadRevistas,
+        modalidadProduccion, cantidadProducciones,
+        tipoProduccion, cantidadProduccionesTipo,
+        tipoObra, cantidadObras,
+        tipoInterpretacion, cantidadInterpretaciones,
+        general, numeroAutores
+    );
+    return totalPregrado + totalPosgrado + totalCategorias + totalExperiencia + totalP;
 }
