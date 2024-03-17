@@ -13,6 +13,7 @@ const NominaForm = () => {
     const [aniosDocenciaUniversitaria, setAniosDocenciaUniversitaria] = useState(0);
     const [aniosExperienciaProfesionalDireccionAcademica, setAniosExperienciaProfesionalDireccionAcademica] = useState(0);
     const [aniosExperienciaProfesionalDiferenteDocencia, setAniosExperienciaProfesionalDiferenteDocencia] = useState(0);
+    
     const [totalCalculado, setTotalCalculado] = useState(0);
     const [totalExperienciaCalificada, setTotalExperienciaCalificada] = useState(0);
 

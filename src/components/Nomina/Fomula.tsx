@@ -259,5 +259,5 @@ export function total_titulos_estudios(
         tipoInterpretacion, cantidadInterpretaciones,
         general, numeroAutores
     );
-    return totalPregrado + totalPosgrado + totalCategorias + totalExperiencia + totalP;
+    return totalPregrado + totalPosgrado + totalCategorias + totalExperiencia  ;
 }
