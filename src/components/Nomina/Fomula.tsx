@@ -1,6 +1,8 @@
 // Fórmulas para calcular el precio de títulos de pregrado
 const general: number = 16441.00;
 
+
+// primer factor  por titulos univeritarios
 export enum TitulosU {
     medicos = 183,
     otros = 178,
@@ -68,6 +70,7 @@ export function total_categorias(categoria: CategoriasEscalafon, general: number
 
 
 //calcular experiencia 
+
 // Enums para representar los diferentes tipos de experiencia calificada
 export enum TipoExperiencia {
     Investigacion = 6,
@@ -110,7 +113,7 @@ export function total_experiencia_calificada(
 
     return puntosInvestigacion + puntosDocenciaUniversitaria + puntosExperienciaProfesionalDireccionAcademica + puntosExperienciaProfesionalDiferenteDocencia;
 }
-
+// para calcular productividad 
 // Enums para representar los tipos de revistas
 export enum TipoRevista {
     A1 = 15,
@@ -224,10 +227,7 @@ function totalProductividad(
     return total;
 }
 
-
-
-
-
+// funcion general 
 // Función para calcular el total de sueldos
 export function total_titulos_estudios(
     general: number, 
@@ -259,5 +259,7 @@ export function total_titulos_estudios(
         tipoInterpretacion, cantidadInterpretaciones,
         general, numeroAutores
     );
-    return totalPregrado + totalPosgrado + totalCategorias + totalExperiencia  ;
+
+    return totalPregrado + totalPosgrado + totalCategorias + totalExperiencia   ;
+
 }

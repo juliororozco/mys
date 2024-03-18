@@ -13,10 +13,8 @@ const NominaForm = () => {
     const [aniosDocenciaUniversitaria, setAniosDocenciaUniversitaria] = useState(0);
     const [aniosExperienciaProfesionalDireccionAcademica, setAniosExperienciaProfesionalDireccionAcademica] = useState(0);
     const [aniosExperienciaProfesionalDiferenteDocencia, setAniosExperienciaProfesionalDiferenteDocencia] = useState(0);
-    
     const [totalCalculado, setTotalCalculado] = useState(0);
     const [totalExperienciaCalificada, setTotalExperienciaCalificada] = useState(0);
-
     const handleChangeTitulo = (event: ChangeEvent<HTMLSelectElement>) => {
         setTituloSeleccionado(event.target.value);
     };
@@ -103,8 +101,6 @@ const NominaForm = () => {
                                  <option value="otros">Otros</option>
                            </select>
                 </div>
-                
-
                     <div className="mb-4">
                         <label htmlFor="especializaciones" className="block text-sm font-medium text-gray-700">Especializaciones:</label>
                         <input id="especializaciones" type="number" value={especializaciones} onChange={handleChangeEspecializaciones} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
