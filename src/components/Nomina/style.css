@@ -1,40 +1,86 @@
-.form-container {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  .form-title {
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .form-label {
-    font-weight: bold;
-  }
-  
-  .form-input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-  }
-  
-  .form-select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-  }
-  
-  .form-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-  }
-  
-  .form-button:hover {
-    background-color: #45a049;
-  }
+/* Estilo general */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 0;
+}
 
-  .mb-4{
-width: 1000px;    
+.container {
+  max-width: 800px; /* Ancho máximo del contenedor */
+  margin: 50px auto;
+}
+
+.card {
+  background-color: #f0f4f8; /* Fondo gris más pronunciado */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 255, 0.2); /* Sombra azul más pronunciada */
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+/* Estilos para los campos de entrada */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="number"],
+select {
+  width: calc(100% - 22px); /* Restar 22px para compensar el padding */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Estilos para el botón */
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4a90e2;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #357bd8;
+}
+
+/* Estilos para los resultados */
+.resultados {
+  margin-top: 20px;
+}
+
+.resultado {
+  margin-bottom: 10px;
+}
+
+/* Estilos adicionales */
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.separator {
+  height: 1px;
+  background-color: #ddd;
+  margin: 20px 0; /* Aumentar el espacio entre las tarjetas */
 }

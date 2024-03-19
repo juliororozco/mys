@@ -1,9 +1,10 @@
 import React, { useState, ChangeEvent } from "react";
-import { TitulosU, CategoriasEscalafon, ExperienciaCalificada, total_titulos_estudios, total_experiencia_calificada,TipoRevista,
+import { TitulosU, CategoriasEscalafon, total_titulos_estudios, total_experiencia_calificada,TipoRevista,
     ModalidadProduccion,
     TipoProduccion,
     TipoObraArtistica,
     TipoInterpretacion, } from "./Fomula";
+    import "./style.css";
 
 const NominaForm = () => {
     const general = 16441.00;
@@ -169,9 +170,12 @@ const NominaForm = () => {
     
     return (
         <div className="">
-            <div className="form-container">
-                <h1 className="form-title" > <strong>factor titulos universitarios</strong> </h1>
-                <form className="">
+            <div className="form-container">"
+            <form className="">
+                <div className="card">
+
+                <h1> 1. Factor titulos universitario</h1>
+
                 <div className="">
                      <label htmlFor="titulo" className="">Tipo de Título Universitario:</label>
                             <select id="titulo" value={tituloSeleccionado} onChange={handleChangeTitulo} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
@@ -180,7 +184,7 @@ const NominaForm = () => {
                                  <option value="otros">Otros</option>
                            </select>
                 </div>
-                <h1>Años de estudios Posgrado</h1>
+                <h3>Años de estudios Posgrado</h3>
                     <div className="mb-4">
                         <label htmlFor="especializaciones" className="block text-sm font-medium text-gray-700">Especializaciones:</label>
                         <input id="especializaciones" type="number" value={especializaciones} onChange={handleChangeEspecializaciones} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
@@ -193,22 +197,29 @@ const NominaForm = () => {
                         <label htmlFor="doctorado" className="block text-sm font-medium text-gray-700">Doctorado:</label>
                         <input id="doctorado" type="number" value={doctorado} onChange={handleChangeDoctorado} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                     </div>
-
-                    <h2>Factor categoria de docente</h2>
+                </div>
+                <div className="separator"></div>
+                    <div className="card">
+                        
+                    <h1>2. Factor categoria de docente</h1>
             
-                    <div className="mb-4">
-                        <label htmlFor="categoria" className="block text-sm font-medium text-gray-700">Categoría Escalafón Docente:</label>
-                        <select id="categoria" value={categoriaSeleccionada} onChange={handleChangeCategoria} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <option value="">Selecciona una categoría</option>
-                            <option value="Instructor">Instructor</option>
-                            <option value="ProfesorAuxiliar">Profesor Auxiliar</option>
-                            <option value="InstructorAsistente">Instructor Asistente</option>
-                            <option value="ProfesorAsistente">Profesor Asistente</option>
-                            <option value="ProfesorAsociado">Profesor Asociado</option>
-                            <option value="ProfesorTitular">Profesor Titular</option>
-                        </select>
+            <div className="mb-4">
+                <label htmlFor="categoria" className="block text-sm font-medium text-gray-700">Categoría Escalafón Docente:</label>
+                <select id="categoria" value={categoriaSeleccionada} onChange={handleChangeCategoria} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <option value="">Selecciona una categoría</option>
+                    <option value="Instructor">Instructor</option>
+                    <option value="ProfesorAuxiliar">Profesor Auxiliar</option>
+                    <option value="InstructorAsistente">Instructor Asistente</option>
+                    <option value="ProfesorAsistente">Profesor Asistente</option>
+                    <option value="ProfesorAsociado">Profesor Asociado</option>
+                    <option value="ProfesorTitular">Profesor Titular</option>
+                </select>
+            </div>
                     </div>
-                    <h2>Factor de experiencia</h2>
+                    <div className="separator"></div>
+                  <div className="card">
+                    
+                    <h1>3. Factor de experiencia</h1>
             
                     <div className="mb-4">
                         <label htmlFor="aniosInvestigacion" className="block text-sm font-medium text-gray-700">Años de Experiencia en Investigación:</label>
@@ -226,11 +237,14 @@ const NominaForm = () => {
                         <label htmlFor="aniosExperienciaProfesionalDiferenteDocencia" className="block text-sm font-medium text-gray-700">Años de Experiencia Profesional Diferente a la Docencia:</label>
                         <input id="aniosExperienciaProfesionalDiferenteDocencia" type="number" value={aniosExperienciaProfesionalDiferenteDocencia} onChange={handleChangeAniosExperienciaProfesionalDiferenteDocencia} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                     </div>
-                    <h2>Formulario de Cálculo de Productividad</h2>
-                    <div className="mb-4">
-                    ¡Por supuesto! Aquí está el código con el número de actores y la cantidad al lado de cada factor:
+                  </div>
+                  <div className="separator"></div>
+                  <div className="card">
 
-```jsx
+                    <h1>4. Factor de Productividad</h1>
+                    <div className="mb-4">
+                   
+
 <div className="mb-4">
     <label htmlFor="tipoRevista" className="block text-sm font-medium text-gray-700">Tipo de Revista:</label>
     <select id="tipoRevista" value={tipoRevista} onChange={handleChangeTipoRevista} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
@@ -293,9 +307,9 @@ const NominaForm = () => {
     <label htmlFor="numeroAutores" className="block text-sm font-medium text-gray-700">Número de Autores:</label>
     <input id="numeroAutores" type="number" value={numeroAutores} onChange={handleChangeNumeroAutores} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
 </div>
-```
+                  </div>
 
-Ahora, el número de actores y la cantidad están al lado de cada factor correspondiente.</div>
+</div>
 
 
 
